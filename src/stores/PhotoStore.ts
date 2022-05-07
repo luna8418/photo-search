@@ -11,7 +11,7 @@ export class PhotoStore {
 
   photos: Photo[] = [];
   pagination: Pagination = {
-    page: 0,
+    page: 1,
     limit: 10,
     total: 0,
   }
@@ -21,7 +21,7 @@ export class PhotoStore {
     makeAutoObservable(this);
   }
 
-  search = async () => {
+  search = async (): Promise<void> => {
     this.searching = true;
     const { photos, total } = await this.photoService.searchPhotos(
       this.keyword,
@@ -34,6 +34,15 @@ export class PhotoStore {
       total
     };
     this.searching = false;
+  }
+
+  onPageChange = async (page: number, size: number): Promise<void> => {
+    this.pagination = {
+      ...this.pagination,
+      page,
+      limit: size,
+    };
+    await this.search();
   }
 
   increment = () => {

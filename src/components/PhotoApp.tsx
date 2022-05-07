@@ -33,6 +33,9 @@ export const PhotoApp = () => {
       {photoStore.keyword && !photoStore.searching && photoStore.photos?.length > 0 &&
         <PhotoTable
           photos={photoStore.photos}
+          total={photoStore.pagination.total}
+          currentPage={photoStore.pagination.page}
+          onPaginationChange={async (page: number, pageSize: number) => await photoStore.onPageChange(page, pageSize)}
         />
       }
     </PhotoContent>

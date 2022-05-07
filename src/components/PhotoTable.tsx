@@ -2,7 +2,12 @@ import * as React from "react";
 import { Image, Table } from 'antd';
 import { Photo } from "../types/types";
 
-export const PhotoTable: React.FC<{ photos: Photo[] }> = ({ photos }) => {
+export const PhotoTable: React.FC<{
+  photos: Photo[],
+  total: number,
+  currentPage: number,
+  onPaginationChange: (page: number, pageSize: number) => void,
+}> = ({ photos, total, currentPage, onPaginationChange }) => {
   const columns = [
     {
       title: 'ID',
@@ -38,6 +43,14 @@ export const PhotoTable: React.FC<{ photos: Photo[] }> = ({ photos }) => {
     <Table
       dataSource={photos}
       columns={columns}
+      pagination={{
+        position: ['topRight', 'bottomRight'],
+        defaultCurrent: 1,
+        current: currentPage,
+        total: total || 0,
+        onChange: onPaginationChange,
+        onShowSizeChange: onPaginationChange,
+      }}
       onRow={(photo: Photo) => {
         return {
           onClick: event => { photo.visible = true }, // click row
