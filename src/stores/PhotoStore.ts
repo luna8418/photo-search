@@ -1,8 +1,10 @@
 import { makeAutoObservable } from "mobx";
+import { PhotoService } from "../services/PhotoService";
 import { Pagination, Photo } from "../types/types";
 
 export class PhotoStore {
   counter = 0;
+  photoService: PhotoService;
 
   keyword: string = '';
   searching: boolean = false;
@@ -11,14 +13,27 @@ export class PhotoStore {
   pagination: Pagination = {
     page: 0,
     limit: 10,
+    total: 0,
   }
 
   constructor() {
+    this.photoService = new PhotoService();
     makeAutoObservable(this);
   }
 
   search = async () => {
     this.searching = true;
+    const { photos, total } = await this.photoService.searchPhotos(
+      this.keyword,
+      this.pagination.page,
+      this.pagination.limit,
+    );
+    this.photos = photos;
+    this.pagination = {
+      ...this.pagination,
+      total
+    };
+    this.searching = false;
   }
 
   increment = () => {
