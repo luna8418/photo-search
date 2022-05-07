@@ -1,27 +1,22 @@
-# react-mobx-starter project
+# Simple photo search app
 
-Want to have a quickstart with react, mobx and typescript?
+Forked from [react-mobx-starter](https://github.com/danielbischoff/react-mobx-starter) as a starter
 
-Check out this project to spent time implementing your features and not setting up your build config.
-To help you while developing, it reloads components and stylesheets on the fly. No full page reload required.
+I've decided to use graphql client for querying the api and mobx for the state management. And it also toke me sometime to find the ui library. The component `PhotoApp` is more in a mobx way but should be a dumb component and easier for testing. This toke me too long, so did not have much time to improve it. The places could be improved:
+- Make `PhotoApp` dumb(representational) component and wrap with mobx' observer after
+- Improve unit test
+- Deploy to somewhere like github pages or S3
 
-Supported features:
+## Libraries used
 
-- [x] Typescript
-- [x] React
-- [x] Mobx
-- [x] Styled components
-- [x] HMR of components
-- [x] HMR of styles
-- [x] Minifies/obfuscates your javascript in production
-- [x] Uses jest for unit testing
-- [x] Uses React Hooks
-- [x] Uses react-testing-library for testing
-- [x] Use VS Code to debug your code and tests
+- antd for the ui library
+- graphql-request for the graphql client
+- mobx for the state management
+- testing-library/react & jest for testing library
 
 ## Prerequisite
 
-To debug your unit tests, please make sure you are using node version >= 8.9.4
+node version 12
 
 ## Install
 
@@ -51,17 +46,3 @@ npm run build
 
 The output will be under _/dist_
 
-## Debug active unit test file
-
-To debug the active unit test file, go to the debug section in VS Code and select the "Jest Test Current File" launch config.
-Then open your unit test file, set breakpoints wherever you want and press "F5".
-
-## How to use images
-
-To use images, you can import them in your current file and webpack will give you the image as a base64 encoded string or as a path to the image.
-
-```javascript
-import * as image from "./image.jpg";
-
-const ImageComponent = () => <img src={image} />;
-```
