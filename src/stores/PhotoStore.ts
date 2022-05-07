@@ -23,7 +23,18 @@ export class PhotoStore {
     makeAutoObservable(this);
   }
 
+  updateKeyword = async (newKeyword: string): Promise<void> => {
+    this.keyword = newKeyword;
+    this.searched = false; // reset
+
+    await this.search();
+  }
+
   search = async (): Promise<void> => {
+    if (this.keyword?.trim() === '') {
+      this.reset();
+      return;
+    }
     this.searching = true;
     const { photos, total } = await this.photoService.searchPhotos(
       this.keyword,
@@ -46,6 +57,18 @@ export class PhotoStore {
       limit: size,
     };
     await this.search();
+  }
+
+  reset = () => {
+    this.searched = false;
+    this.searching = false;
+    this.photos = [];
+
+    this.pagination = {
+      ...this.pagination,
+      page: 1,
+      total: 0,
+    }
   }
 
   increment = () => {

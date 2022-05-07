@@ -22,7 +22,7 @@ export const PhotoApp = () => {
         placeholder="Search keywords on title"
         size="large"
         loading={photoStore.searching}
-        onChange={(e) => photoStore.keyword = e.target.value}
+        onChange={async (e) => await photoStore.updateKeyword(e.target.value)}
         onSearch={async() => await photoStore.search()}
       />
 
