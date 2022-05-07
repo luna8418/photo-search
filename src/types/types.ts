@@ -3,6 +3,7 @@ export interface Photo {
     title: string
     thumbnailUrl: string
     url: string
+    visible?: boolean
 }
 
 export interface Pagination {
