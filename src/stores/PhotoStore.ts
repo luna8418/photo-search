@@ -3,7 +3,6 @@ import { PhotoService } from "../services/PhotoService";
 import { Pagination, Photo } from "../types/types";
 
 export class PhotoStore {
-  counter = 0;
   photoService: PhotoService;
 
   keyword: string = '';
@@ -76,12 +75,4 @@ export class PhotoStore {
       total: 0,
     }
   }
-
-  increment = () => {
-    this.counter += 1;
-  };
-
-  decrement = () => {
-    this.counter -= 1;
-  };
 }

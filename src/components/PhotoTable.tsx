@@ -41,6 +41,7 @@ export const PhotoTable: React.FC<{
 
   return (
     <Table
+      id="photo-table"
       dataSource={photos}
       columns={columns}
       pagination={{

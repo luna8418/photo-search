@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render,  } from "@testing-library/react";
 import * as React from "react";
 import { AppContext, createStores } from "./AppContext";
 
@@ -6,9 +6,11 @@ interface TestWrapperProps {
   children: React.ReactNode | React.ReactNodeArray;
 }
 
+export const stores = createStores();
+
 const TestWrapper = ({ children }: TestWrapperProps) => {
   return (
-    <AppContext.Provider value={createStores()}>{children}</AppContext.Provider>
+    <AppContext.Provider value={stores}>{children}</AppContext.Provider>
   );
 };
 
