@@ -1,8 +1,8 @@
 import * as React from "react";
-import { ApplicationStore } from "./stores";
+import { PhotoStore } from "./stores";
 
 export function createStores() {
-  return { applicationStore: new ApplicationStore() };
+  return { photoStore: new PhotoStore() };
 }
 
 export const stores = createStores();

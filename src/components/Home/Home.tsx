@@ -6,15 +6,15 @@ import { Button, Container, NumberDisplay } from "./styles";
 interface Props {}
 
 export const Home = observer(function(props: Props) {
-  const { applicationStore } = React.useContext(AppContext);
+  const { photoStore } = React.useContext(AppContext);
 
   return (
     <Container>
-      <Button onClick={applicationStore.decrement}>-</Button>
+      <Button onClick={photoStore.decrement}>-</Button>
       <NumberDisplay data-testid="counter-value">
-        {applicationStore.counter}
+        {photoStore.counter}
       </NumberDisplay>
-      <Button onClick={applicationStore.increment}>+</Button>
+      <Button onClick={photoStore.increment}>+</Button>
     </Container>
   );
 });
