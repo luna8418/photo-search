@@ -32,10 +32,16 @@ export class PhotoService {
     }`
 
     const data = await this.client.request(query);
+    const photos = data.photos.data.map((photo: Photo) => {
+      return {
+        ...photo,
+        visible: false,
+      }
+    });
 
     return {
-      photos: data.photos.data,
-      total: data.photos.meta.totalCount
+      photos,
+      total: data.photos.meta.totalCount,
     }
   }
 }

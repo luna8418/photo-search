@@ -35,6 +35,7 @@ export const PhotoApp = () => {
           photos={photoStore.photos}
           pagination={photoStore.pagination}
           onPaginationChange={async (page: number, pageSize: number) => await photoStore.onPageChange(page, pageSize)}
+          previewPhoto={(id: string, visible: boolean) => photoStore.previewPhoto(id, visible)}
         />
       }
     </PhotoContent>

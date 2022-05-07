@@ -6,7 +6,8 @@ export const PhotoTable: React.FC<{
   photos: Photo[],
   pagination: Pagination,
   onPaginationChange: (page: number, pageSize: number) => void,
-}> = ({ photos, pagination, onPaginationChange }) => {
+  previewPhoto: (id: string, visible: boolean) => void,
+}> = ({ photos, pagination, onPaginationChange, previewPhoto }) => {
   const columns = [
     {
       title: 'ID',
@@ -27,10 +28,10 @@ export const PhotoTable: React.FC<{
           width={200}
           src={thumbnailUrl}
           preview={{
-            visible: !!photo.visible,
+            visible: photo.visible,
             src: photo.url,
-            onVisibleChange: value => {
-              photo.visible = value;
+            onVisibleChange: visible => {
+              previewPhoto(photo.id, visible);
             },
           }}
         />
@@ -53,8 +54,8 @@ export const PhotoTable: React.FC<{
       }}
       onRow={(photo: Photo) => {
         return {
-          onClick: event => { photo.visible = true }, // click row
-          onDoubleClick: event => { photo.visible = true }, // double click row
+          onClick: event => { previewPhoto(photo.id, true); }, // click row
+          onDoubleClick: event => { previewPhoto(photo.id, true); }, // double click row
         };
       }}
     />

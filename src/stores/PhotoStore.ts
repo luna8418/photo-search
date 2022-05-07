@@ -59,6 +59,12 @@ export class PhotoStore {
     await this.search();
   }
 
+  previewPhoto = (id: string, visible: boolean) => {
+    this.photos.find(photo => photo.id === id).visible = visible;
+    // new array to force mobx working
+    this.photos = [...this.photos];
+  }
+
   reset = () => {
     this.searched = false;
     this.searching = false;
