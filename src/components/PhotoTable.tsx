@@ -1,13 +1,12 @@
 import * as React from "react";
 import { Image, Table } from 'antd';
-import { Photo } from "../types/types";
+import { Pagination, Photo } from "../types/types";
 
 export const PhotoTable: React.FC<{
   photos: Photo[],
-  total: number,
-  currentPage: number,
+  pagination: Pagination,
   onPaginationChange: (page: number, pageSize: number) => void,
-}> = ({ photos, total, currentPage, onPaginationChange }) => {
+}> = ({ photos, pagination, onPaginationChange }) => {
   const columns = [
     {
       title: 'ID',
@@ -46,8 +45,9 @@ export const PhotoTable: React.FC<{
       pagination={{
         position: ['topRight', 'bottomRight'],
         defaultCurrent: 1,
-        current: currentPage,
-        total: total || 0,
+        current: pagination.page || 1,
+        total: pagination.total || 0,
+        pageSize: pagination.limit || 10,
         onChange: onPaginationChange,
         onShowSizeChange: onPaginationChange,
       }}

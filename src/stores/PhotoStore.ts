@@ -8,6 +8,8 @@ export class PhotoStore {
 
   keyword: string = '';
   searching: boolean = false;
+  // used to fix ui when first time input keyword and before searching 
+  searched: boolean = false;
 
   photos: Photo[] = [];
   pagination: Pagination = {
@@ -34,6 +36,7 @@ export class PhotoStore {
       total
     };
     this.searching = false;
+    this.searched = true;
   }
 
   onPageChange = async (page: number, size: number): Promise<void> => {

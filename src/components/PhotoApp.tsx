@@ -26,15 +26,14 @@ export const PhotoApp = () => {
         onSearch={async() => await photoStore.search()}
       />
 
-      {photoStore.keyword && !photoStore.searching && photoStore.photos?.length === 0 &&
+      {photoStore.keyword && photoStore.searched && !photoStore.searching && photoStore.photos?.length === 0 &&
         <NoPhotoFound />
       }
 
-      {photoStore.keyword && !photoStore.searching && photoStore.photos?.length > 0 &&
+      {photoStore.keyword && photoStore.searched && !photoStore.searching && photoStore.photos?.length > 0 &&
         <PhotoTable
           photos={photoStore.photos}
-          total={photoStore.pagination.total}
-          currentPage={photoStore.pagination.page}
+          pagination={photoStore.pagination}
           onPaginationChange={async (page: number, pageSize: number) => await photoStore.onPageChange(page, pageSize)}
         />
       }
