@@ -18,6 +18,8 @@
   "author": "Daniel Bischoff",
   "license": "MIT",
   "dependencies": {
+    "antd": "^4.20.2",
+    "graphql-request": "^4.2.0",
     "mobx": "^6.0.4",
     "mobx-react": "^7.0.5",
     "react": "^17.0.1",
