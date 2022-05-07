@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Home } from "./components/Home/Home";
+import { PhotoAppObserver } from "./components/PhotoApp";
 
 export class App extends React.Component {
   render() {
-    return <Home />;
+    return <PhotoAppObserver />;
   }
 }
